@@ -1,0 +1,2 @@
+class SetListTrack < ApplicationRecord
+end
