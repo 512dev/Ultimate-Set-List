@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
-  # get 'pages/home'
-
-  # get 'pages/about'
-
-    
-
   devise_for :users,
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+             controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+             registrations: "users/registrations" }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  root to: 'pages/home'
+  resources :setlists do
+    resources :comments, except: [:index, :show]
+    resources :favorite, except: [:show]
+  end
+  root 'pages#home'
 end

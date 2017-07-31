@@ -38,6 +38,7 @@ gem "simple_form"
 gem "autoprefixer-rails"
 gem 'omniauth-facebook'
 gem 'rspotify'
+gem "pundit"
 
 
 # Use Capistrano for deployment
