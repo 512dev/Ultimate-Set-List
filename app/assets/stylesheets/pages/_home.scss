@@ -1,0 +1,40 @@
+// Specific CSS for your home-page
+.jumbotron:before{
+   content: "";
+   position: fixed;
+   left: 0;
+   right: 0;
+   z-index: -1;
+
+   background-image: url('jumbotron.jpeg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   display: block;
+   height: 100vh;
+
+   filter: blur(25px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+.jumbotron {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  	h1{
+  		font-size: 8em;
+  	}
+
+}
+.align-verticle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
