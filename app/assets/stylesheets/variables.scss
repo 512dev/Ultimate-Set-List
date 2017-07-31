@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Playfair+Display:400,700,900');
+$base-font: 'Anton', sans-serif;
+$header-font: 'Playfair Display', serif;
+
+// Font-size and line-height
+$base-size: 16px;
+$base-height: 1.4;
+
+/* -------------------------------------
+ * Colors
+ * ------------------------------------- */
+// Scheme
+$brand-color: #D23333;
+
+$red: #FF5340;
+$blue: #40D6FF;
+$yellow: #F9FF3E;
+$orange: #E67E22;
+$green: #43FF44;
+$gray: #B2B2B2;
+$ltgray: #E1E1E1;
+$purple: #FF58D6;
+
+h1, h2, h3, h4, h5, h6{
+	font-family: $header-font;
+}

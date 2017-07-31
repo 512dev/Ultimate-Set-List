@@ -1,2 +1,14 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="jumbotron align-verticle">
+	<div class="container-fluid ">
+		<div class="title text-center">
+			<h1>Ultimate Set List</h1>
+			<p>Your favorite band playing your favorite music in your ideal venue</p>
+		</div>
+		<%# if user_signed_in? %>
+			<%= link_to "Start a Setlist", new_setlist_path, class: "btn btn-primary"  %>
+		<%# else %>
+			<%#= link_to "Sign In", new_user_session_path, class: "btn btn-primary" %>
+		<%# end %>
+	</div>
+</div>
+
