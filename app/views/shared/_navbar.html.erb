@@ -13,17 +13,16 @@
     <% if user_signed_in? %>
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <p><%= current_user.uid %></p>
-          <%# if current_user.image %>
-            <%# avatar_url = current_user.image %>
-            <%#= image_tag avatar_url, class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <%# else %>
-            <!-- <div class="default-avatar dropdown-toggle background-default" id="navbar-wagon-menu" data-toggle="dropdown"> -->
-              <!-- <p><%#= image_tag(current_user.avatar.url) %></p> -->
-              <!-- <p><%#= current_user.name[0].capitalize %></p> -->
+          <!-- <p><%#= current_user.uid %></p> -->
+          <% if current_user.image %>
+            <% avatar_url = current_user.image %>
+            <%= image_tag avatar_url, class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% else %>
+            <div class="default-avatar dropdown-toggle background-default" id="navbar-wagon-menu" data-toggle="dropdown">>
+              <p><%= current_user.name[0].capitalize %></p>
             </div>
 
-          <%# end %>
+          <% end %>
 
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu-right">
             <li>
