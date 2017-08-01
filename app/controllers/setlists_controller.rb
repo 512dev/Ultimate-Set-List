@@ -2,6 +2,7 @@ class SetlistsController < ApplicationController
   before_action :set_setlist, only: [:show, :edit, :update, :destory]
   def new
     @setlist = Setlist.new
+    authorize @setlist
   end
   
   private
