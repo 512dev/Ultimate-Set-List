@@ -6,6 +6,7 @@ $header-font: 'Playfair Display', serif;
 $base-size: 16px;
 $base-height: 1.4;
 
+
 /* -------------------------------------
  * Colors
  * ------------------------------------- */
@@ -21,6 +22,12 @@ $gray: #B2B2B2;
 $ltgray: #E1E1E1;
 $purple: #FF58D6;
 
+// Box Shadows
+$avatar-box-shadow: 2px 2px 8px $ltgray;
+
 h1, h2, h3, h4, h5, h6{
 	font-family: $header-font;
 }
+
+
+
