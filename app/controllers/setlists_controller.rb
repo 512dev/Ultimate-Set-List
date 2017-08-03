@@ -3,8 +3,7 @@ class SetlistsController < ApplicationController
   def new
     @setlist = Setlist.new
     authorize @setlist
-    
-    # @artist_search = RSpotify::Artist.search('Black', limit: 10)
+    @artist_search = RSpotify::Artist.search('Black', limit: 10)
   end
 
   private

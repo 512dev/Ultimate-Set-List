@@ -1,6 +1,11 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def spotify
-    user = User.find_for_spotify_oauth(request.env['omniauth.auth'])
+
+    spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    spotify_user_hash = spotify_user.to_hash
+    print spotify_user_hash
+    user = User.find_for_spotify_oauth(spotify_user_hash)
+    
 
     if user.persisted?
       sign_in_and_redirect user, event: :authentication

@@ -14,16 +14,17 @@ class User < ApplicationRecord
 
 
   def self.find_for_spotify_oauth(auth)
-    user_params = auth.slice(:provider, :uid)
-    user_params.merge! auth.info.slice(:email)
-    user_params[:name] = auth.info.display_name
-    user_params[:image] = auth.info.images[0].url
-    user_params[:token] = auth.credentials.token
-    user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+    user_params = {}
+    user_params[:email] =  auth['email']
+    user_params[:username] = auth["id"]
+    user_params[:name] = auth["display_name"]
+    user_params[:image] = auth['images'][0].url
+    user_params[:token] = auth['credentials'].token
+    user_params[:token_expiry] = Time.at(auth['credentials'].expires_at)
     user_params = user_params.to_h
 
-    user = User.find_by(provider: auth.provider, uid: auth.uid)
-    user ||= User.find_by(email: auth.info.email) # User did a regular sign up in the past.
+    user = User.find_by(username: auth['id'])
+    user ||= User.find_by(email: auth['email']) # User did a regular sign up in the past.
     if user
       user.update(user_params)
     else
