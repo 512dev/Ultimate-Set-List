@@ -280,7 +280,7 @@ Devise.setup do |config|
   #   image_size: 'square',  # 50x50, guaranteed ratio
   #   secure_image_url: true
 
-  config.omniauth :spotify, ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_SECRET"],
-     scope: 'playlist-read-private user-read-private user-read-email playlist-modify-public',
-     info_fields: "name, nickname, email"
+  # config.omniauth :spotify, ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_SECRET"],
+  #    scope: 'playlist-read-private user-read-private user-read-email playlist-modify-public',
+  #    info_fields: "name, nickname, email"
 end
