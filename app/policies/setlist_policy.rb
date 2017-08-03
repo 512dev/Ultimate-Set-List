@@ -7,15 +7,15 @@ class SetlistPolicy < ApplicationPolicy
 
 
   def index?
-    scope
+    true
   end
 
   def show?
-    scope.where(id: record.id).exists?
+    true
   end
 
   def create?
-    scope
+    true
   end
 
   def new?
@@ -31,6 +31,6 @@ class SetlistPolicy < ApplicationPolicy
   end
 
   def destroy?
-    curator_or_admin?
+    admin? || scope.where(user: user)
   end
 end
