@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   def self.find_for_spotify_oauth(auth)
     user_params = {}
+    user_params[:market] = auth['country']
     user_params[:email] =  auth['email']
     user_params[:username] = auth["id"]
     user_params[:name] = auth["display_name"]
