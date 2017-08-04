@@ -3,7 +3,11 @@ class SetlistsController < ApplicationController
   def new
     @setlist = Setlist.new
     authorize @setlist
-    @artist_search = RSpotify::Artist.search('Black', limit: 10)
+
+    artist_search = RSpotify::Artist.search('Black Sabbath')
+    artist = artist_search.first
+    @albums = artist.albums(limit: 50, country: current_user.market)
+
   end
 
   private

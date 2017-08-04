@@ -1,7 +1,42 @@
-<h1>Setlist#new</h1>
-	<ul>
-	  <% @artist_search.each do |artist| %>
-		<li><%= artist.name %></li>	
-	  <% end %>
-	</ul>
+<div class="app-container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="track-album-container">
+				<div class="nav-container">
+					<%= render "setlists/track_nav" %>
+				</div>
+				<div class="album-container" id="style-2">
+					<ul class="list-unstyled">
+					  <% @albums.each do |album| %>
+
+						<li>
+							<div class="album-card">
+								<div class="album-image-container">
+									<%= image_tag album.images[0]["url"], class: "album-image" %> 
+								</div>
+								<div class="album-details-container">
+									<h3><%= album.name %></h3> 
+									<p><%= album.release_date %></p>
+								</div>
+								
+							</div>
+								
+						</li>
+							<!-- <ol>
+								<%# album.tracks.each do |track| %>
+									<li><%#= track.name %></li>
+								<%# end %>
+							</ol>	 -->
+					  <% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	body{
+		background-color: #272727;
+	}
+</style>
 		
