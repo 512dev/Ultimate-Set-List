@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
     resources :favorite, except: [:show]
   end
+  resources :tracks, only: [:index]
   root 'pages#home'
 end

@@ -6,29 +6,8 @@
 					<%= render "setlists/track_nav" %>
 				</div>
 				<div class="album-container" id="style-2">
-					<ul class="list-unstyled">
-					  <% @albums.each do |album| %>
-
-						<li>
-							<div class="album-card">
-								<div class="album-image-container">
-									<%= image_tag album.images[0]["url"], class: "album-image" %> 
-								</div>
-								<div class="album-details-container">
-									<h3><%= album.name %></h3> 
-									<p><%= album.release_date %></p>
-								</div>
-								
-							</div>
-								
-						</li>
-							<!-- <ol>
-								<%# album.tracks.each do |track| %>
-									<li><%#= track.name %></li>
-								<%# end %>
-							</ol>	 -->
-					  <% end %>
-					</ul>
+					<%= render "setlists/albums" %>
+					
 				</div>
 			</div>
 		</div>
@@ -39,4 +18,16 @@
 		background-color: #272727;
 	}
 </style>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+	$(".album-card").click(function(event) {
+		var id = $(this).attr('id').toString()
+		console.log(id);
+		$('#album-track-'+id).removeClass('hidden')
+	});
+
+</script>
+<% end %>
 		
