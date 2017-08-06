@@ -22,10 +22,24 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
 
-	$(".album-card").click(function(event) {
+	// $(".album-card").click(function(event) {
+		// var id = $(this).attr('id').toString()
+		// $('#album-track-'+id).toggle();
+	// });
+	$(".album-container").on('click', '.album-card', function(event) {
+		event.preventDefault();
+		/* Act on the event */
 		var id = $(this).attr('id').toString()
-		console.log(id);
-		$('#album-track-'+id).removeClass('hidden')
+		$('#album-track-'+id).toggle('slow');
+	});
+
+	$('#track-link').click(function(event) {
+		$('.album-container').html('');
+		$('.album-container').html("<%= j render 'setlists/track', local: @albums %>");
+	});
+	$('#album-link').click(function(event) {
+		$('.album-container').html('');
+		$('.album-container').html("<%= j render 'setlists/albums', local: @albums %>");
 	});
 
 </script>
