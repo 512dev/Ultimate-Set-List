@@ -6,4 +6,6 @@ class Setlist < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :tracks, through: :set_list_tracks, dependent: :destroy
   has_one :venue
+  validates :name, presence: true
+  validates :artist, presence: true
 end

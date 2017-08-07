@@ -1,47 +1,14 @@
-<div class="app-container">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="track-album-container">
-				<div class="nav-container">
-					<%= render "setlists/track_nav" %>
-				</div>
-				<div class="album-container" id="style-2">
-					<%= render "setlists/albums" %>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<style>
-	body{
-		background-color: #272727;
-	}
-</style>
+<%= simple_form_for @setlist do |f| %>
+  <%= f.error_notification %>
 
-<% content_for :javascript do %>
-<script type="text/javascript">
+  <div class="form-inputs">
+    <%= f.input :name %>
+  </div>
+  <div class="form-inputs">
+    <%= f.input :artist %>
+  </div>
 
-	// $(".album-card").click(function(event) {
-		// var id = $(this).attr('id').toString()
-		// $('#album-track-'+id).toggle();
-	// });
-	$(".album-container").on('click', '.album-card', function(event) {
-		event.preventDefault();
-		/* Act on the event */
-		var id = $(this).attr('id').toString()
-		$('#album-track-'+id).toggle('slow');
-	});
-
-	$('#track-link').click(function(event) {
-		$('.album-container').html('');
-		$('.album-container').html("<%= j render 'setlists/track', local: @albums %>");
-	});
-	$('#album-link').click(function(event) {
-		$('.album-container').html('');
-		$('.album-container').html("<%= j render 'setlists/albums', local: @albums %>");
-	});
-
-</script>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>
-		
