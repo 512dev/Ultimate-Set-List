@@ -1,3 +1,4 @@
 class Track < ApplicationRecord
-  belongs_to :setlist, through: :set_list_tracks
+  has_many :set_list_tracks
+  has_many :setlists, through: :set_list_tracks
 end

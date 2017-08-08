@@ -1,13 +1,12 @@
 <div class="app-container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6 col-xs-12">
 			<div class="track-album-container">
 				<div class="nav-container">
 					<%= render "setlists/track_nav" %>
 				</div>
 				<div class="album-container" id="style-2">
-					<%= render "setlists/albums" %>
-					
+					<%= render "setlists/track" %>
 				</div>
 			</div>
 		</div>
@@ -36,10 +35,6 @@
 	$('#track-link').click(function(event) {
 		$('.album-container').html('');
 		$('.album-container').html("<%= j render 'setlists/track', local: @albums %>");
-	});
-	$('#album-link').click(function(event) {
-		$('.album-container').html('');
-		$('.album-container').html("<%= j render 'setlists/albums', local: @albums %>");
 	});
 
 </script>

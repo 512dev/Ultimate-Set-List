@@ -1,8 +1,12 @@
 class TracksController < ApplicationController
-	def index
-		@album = params[:album]
-		print "Tracks for #{@album}"
-		skip_policy_scope
+  def index
+    @tracks = RSpotify::Track.search(params[:search])
+      skip_policy_scope
+      respond_to do |format|
+      	 # format.html { render "setlist/track", notice: 'Set was successfully created.' }
+         # format.json { render :, status: :created, location: @setlist }
+         format.js
+      end
 
-	end
+  end
 end

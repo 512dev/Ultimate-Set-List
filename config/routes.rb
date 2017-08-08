@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :setlists do
+    resources :tracks, only: [:index]
     resources :comments, except: [:index, :show]
     resources :favorite, except: [:show]
   end
-  resources :tracks, only: [:index]
   root 'pages#home'
 end
