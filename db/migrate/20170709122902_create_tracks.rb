@@ -3,7 +3,7 @@ class CreateTracks < ActiveRecord::Migration[5.0]
     create_table :tracks do |t|
       t.string :title
       t.references :setlist, foreign_key: true
-      t.string :artist
+      t.string :album
       t.references :user, foreign_key: true
 
       t.timestamps

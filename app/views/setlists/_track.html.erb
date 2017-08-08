@@ -1,0 +1,7 @@
+<ol>
+	<% @albums.each do |album| %>
+		<% album.tracks.each do |track| %>
+			<li><%= track.name %></li>
+		<% end %>
+	<% end %>
+</ol>	

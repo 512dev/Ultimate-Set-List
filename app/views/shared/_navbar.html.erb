@@ -16,7 +16,7 @@
           <!-- <p><%#= current_user.uid %></p> -->
           <% if current_user.image %>
             <% avatar_url = current_user.image %>
-            <%= image_tag avatar_url, class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
             <div class="default-avatar dropdown-toggle background-default" id="navbar-wagon-menu" data-toggle="dropdown">>
               <p><%= current_user.name[0].capitalize %></p>

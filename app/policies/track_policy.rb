@@ -5,6 +5,7 @@ class SetlistPolicy < ApplicationPolicy
     end
   end
 
+
   def index?
     true
   end
@@ -18,7 +19,7 @@ class SetlistPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    create?
   end
 
   def update?
