@@ -18,7 +18,7 @@ class SetlistPolicy < ApplicationPolicy
   end
 
   def new?
-    create?
+    true
   end
 
   def update?
