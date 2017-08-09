@@ -1,24 +1,81 @@
-<ul class="list-unstyled">
-
-  <% @albums.each do |album| %>
-	<li>
-		<div class="album-card" id="<%= album.id %>">
-			<div class="album-image-container">
-				<%= image_tag album.images[0]["url"], class: "album-image" %> 
+<div class="app-container">
+	<div class="row">
+		<div class="col-md-6 col-xs-12 col-md-offset-1">
+			<div class="tracks-container">
+			  <ul class="list-unstyled">
+			  <% @albums.each do |album| %>
+				<li>
+					<div class="album-card" id="<%= album.id %>">
+						<div class="album-image-container">
+							<%= image_tag album.images[0]["url"], class: "album-image" %> 
+						</div>
+						<div class="album-details-container">
+							<h3><%= album.name %></h3> 
+							<p><%= album.release_date %></p>
+						</div>
+						
+					</div>
+					<div class="album-tracks" id="album-track-<%= album.id %>">
+						<ol>
+							<% album.tracks.each do |track| %>
+								<li id="<%= track.id %>" class="track"><%= track.name %></li>
+							<% end %>
+						</ol>	
+					</div>	
+				</li>
+			  <% end %>
+			  </ul>
 			</div>
-			<div class="album-details-container">
-				<h3><%= album.name %></h3> 
-				<p><%= album.release_date %></p>
-			</div>
-			
 		</div>
-		<div class="album-tracks" id="album-track-<%= album.id %>">
-			<ol>
-				<% album.tracks.each do |track| %>
-					<li><%= track.name %></li>
-				<% end %>
-			</ol>	
-		</div>	
-	</li>
-  <% end %>
-</ul>
+		<div class="col-md-3">
+			<div class="setlist-sidebar">
+			<div class="nav-container">
+				<%= render "setlists/track_nav" %>
+			</div>
+				<div id="setlist-tracks">
+					<ol class="setlist">
+						<% @setlist.tracks.each do |track| %>
+							<li id="<%= track.id %>"><%= track.name %></li>
+						<% end %>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	body{
+		background-color: #272727;
+	}
+</style>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+	// $(".album-card").click(function(event) {
+	// 	var id = $(this).attr('id').toString()
+	// 	$('#album-track-'+id).toggle();
+	// });
+	$(".tracks-container").on('click', '.album-card', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		var id = $(this).attr('id').toString();
+		$('#album-track-'+id).toggle('slow');
+	});
+	$(".album-tracks").on('click', '.track', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		var id = $(this).attr('id').toString();
+		var track_name = $(this).text();
+		console.log(id);
+		console.log(track_name);
+
+		// var new_track = $('<li></li>').addClass('setlist-track');
+		// new_tack.text($(this).val()); //this is the value of the input
+		// new_task.attr('id', id); //use attr instead of setAttribute    
+		// new_task.appendTo('ol.setlist');
+		$('.setlist').append('<li id="' + id + '">'+track_name+'</li>');
+	});
+
+</script>
+<% end %>
