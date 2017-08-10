@@ -1,0 +1,10 @@
+<% if @setlist.tracks.empty?%>
+	<h2>No Tracks in this setlist yet.</h2>
+	<%= link_to "Click Here to Add Songs", setlist_tracks_path(@setlist) %>
+<% else %>
+	<ol>
+		<% @setlist.tracks.each do |track| %>
+			<li><%= track.title %></li>
+		<% end %>
+	</ol>
+<% end %>

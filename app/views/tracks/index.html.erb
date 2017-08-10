@@ -18,7 +18,7 @@
 					<div class="album-tracks" id="album-track-<%= album.id %>">
 						<ol>
 							<% album.tracks.each do |track| %>
-							  <li id="<%= track.id %>" class="track" data-id="<%= track.id %>" data-name="<%= track.name %>" data-artist="<%= track.artists[0].name %>"><%= track.name %></li>
+							  <li id="<%= track.id %>" class="track" data-id="<%= track.id %>" data-name="<%= track.name %>" data-artist="<%= track.artists[0].name %>" data-album="<%= track.album.name %>"><%= track.name %></li>
 							<% end %>
 						</ol>	
 					</div>	
@@ -33,13 +33,11 @@
 				<%= render "setlists/track_nav" %>
 			</div>
 				<div id="setlist-tracks">
-					<ol class="setlist">
-						<% @setlist.tracks.each do |track| %>
-							<li id="<%= track.id %>"><%= track.name %></li>
-						<% end %>
-					</ol>
-					<div class="btn btn-primary" id="setlist-save"><h3>Save Setlist</h3></div>
-					<%#= link_to "Save Setlist", setlist_path(@setlist), method: :put, remote: true %>
+<!-- 					<ol class="setlist">
+						<%# @setlist.tracks.each do |track| %>
+							<li id="<%#= track.id %>"><%#= track.name %></li>
+						<%# end %>
+					</ol> -->
 				</div>
 			</div>
 		</div>
@@ -68,40 +66,49 @@ var tracks_hash = []
 		var id = $(this).attr('id').toString();
 		var track_name = $(this).text();
 		var artist = $(this).data('artist');
+		var album = $(this).data('album');
+		var setlist_id = "<%= @setlist.id %>"
+		var current_user_id = "<%= current_user.id %>"
 		console.log(id);
 		console.log(track_name);
 		console.log(artist);
-		console.log(tracks_hash.length)
-		$('.setlist').append('<li id="' + id + '"data-id="' + id + '"data-artist"' + artist +'"data-name"' + track_name + 'class="setlist-track">'+track_name+'</li>');
+		$('.setlist').append('<li id="' + id + '"data-id="' + id +
+		 					 '"data-artist"' + artist +'"data-name"' + track_name + 
+		 					 '"data-album"' + album + '"data-setlist"' + setlist_id +
+		 					 '"class="setlist-track">"' + track_name + '</li>');
 		$(this).toggle("fast");
-		tracks_hash[tracks_hash.length] = {"title": track_name, "artist": artist, "spotify_track_id": id}
-		console.log(tracks_hash);
-	});
-	$('#setlist-save').click(function(event) {
-
-		/* Act on the event */
-		var tracks_array = [];
-		$('.setlist-track').each(function(){
-			tracks_array.push(this.id);	
-		});
-		// var gist = JSON.stringify({
-		//   		"tracks": tracks_hash
-		// 		// "setlist_id": "<%= @setlist.id %>"
-		// });
 		$.ajax({
-	    type: "PUT",
-	    url: "/setlists/<%= @setlist.id %>",
+	    type: "POST",
+	    // url: "/setlists/<%= @setlist.id %>/tracks",
+	    url: "/addTrack",
 	    data: {
-	    	// tracks: JSON.stringify(tracks_hash),
-	    	// tracks: JSON.stringify(tracks_array),
-	    	// setlist_id: JSON.stringify('<%= @setlist.id %>') 
-	    		setlist: {
-	    			setlist_id: "<%= @setlist.id %>",
-	    			tracks: JSON.stringify(tracks_hash)
-	    		}	
+    		track: {
+	    			title: track_name,
+	    			artist: artist,
+	    			spotify_track_id: id,
+	    			album: album,
+	    			setlist_id: setlist_id
+	    		},
+	    	user_id: current_user_id,
+	    	setlist_id: setlist_id
 	    	}
 	  	});
 	});
+	// $('#setlist-save').click(function(event) {
+
+	// 	/* Act on the event */
+	// 	var id = "<%= current_user.id %>"
+	// 	$.ajax({
+	//     type: "POST",
+	//     url: "/setlists/<%= @setlist.id %>/tracks",
+	//     data: {
+ //    		track: {
+	//     			tracks: JSON.stringify(tracks_hash)
+	//     		},
+	//     	user_id: id
+	//     	}
+	//   	});
+	// });
 
 
 </script>

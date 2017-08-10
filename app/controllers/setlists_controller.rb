@@ -32,13 +32,8 @@ class SetlistsController < ApplicationController
     # @albums = artist.albums(limit: 50, country: current_user.market)
   end
   def update
-    # print "The set list contains: #{params[:tracks]}" 
-    p @setlist
+    print "The set list contains: #{params[:tracks]}"
     respond_to do |format|
-      tracks = JSON.parse(setlist_params[:tracks])
-      tracks.each do |track|
-        Track.create(track)
-      end
       @setlist.update(setlist_params)
       format.html { redirect_to setlist_path(@setlist, @user), notice: 'Set was successfully edited.' }
     end
