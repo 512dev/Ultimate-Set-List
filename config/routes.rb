@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
     resources :favorite, except: [:show]
   end
+  post "/addTrack", to: 'tracks#addTrack'
   root 'pages#home'
 end

@@ -31,6 +31,18 @@ class SetlistsController < ApplicationController
     # artist = artist_search.first
     # @albums = artist.albums(limit: 50, country: current_user.market)
   end
+  def update
+    # print "The set list contains: #{params[:tracks]}" 
+    p @setlist
+    respond_to do |format|
+      tracks = JSON.parse(setlist_params[:tracks])
+      tracks.each do |track|
+        Track.create(track)
+      end
+      @setlist.update(setlist_params)
+      format.html { redirect_to setlist_path(@setlist, @user), notice: 'Set was successfully edited.' }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -39,6 +51,6 @@ class SetlistsController < ApplicationController
   end
 
   def setlist_params
-    params.require(:setlist).permit(:name, :artist, :user_id)
+    params.require(:setlist).permit(:name, :artist, :user_id, :tracks)
   end
 end
