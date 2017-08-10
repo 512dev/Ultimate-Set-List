@@ -1,1 +1,115 @@
-<h2>Tracks for <%= @album %></h2>
+<div class="app-container">
+	<div class="row">
+		<div class="col-md-6 col-xs-12 col-md-offset-1">
+			<div class="tracks-container">
+			  <ul class="list-unstyled">
+			  <% @albums.each do |album| %>
+				<li>
+					<div class="album-card" id="<%= album.id %>">
+						<div class="album-image-container">
+							<%= image_tag album.images[0]["url"], class: "album-image" %> 
+						</div>
+						<div class="album-details-container">
+							<h3><%= album.name %></h3> 
+							<p><%= album.release_date %></p>
+						</div>
+						
+					</div>
+					<div class="album-tracks" id="album-track-<%= album.id %>">
+						<ol>
+							<% album.tracks.each do |track| %>
+							  <li id="<%= track.id %>" class="track" data-id="<%= track.id %>" data-name="<%= track.name %>" data-artist="<%= track.artists[0].name %>" data-album="<%= track.album.name %>"><%= track.name %></li>
+							<% end %>
+						</ol>	
+					</div>	
+				</li>
+			  <% end %>
+			  </ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="setlist-sidebar">
+			<div class="nav-container">
+				<%= render "setlists/track_nav" %>
+			</div>
+				<div id="setlist-tracks">
+<!-- 					<ol class="setlist">
+						<%# @setlist.tracks.each do |track| %>
+							<li id="<%#= track.id %>"><%#= track.name %></li>
+						<%# end %>
+					</ol> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	body{
+		background-color: #272727;
+	}
+</style>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+var tracks_hash = []
+
+	$(".tracks-container").on('click', '.album-card', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		var id = $(this).attr('id').toString();
+		$('#album-track-'+id).toggle('slow');
+	});
+	$(".album-tracks").on('click', '.track', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		var id = $(this).attr('id').toString();
+		var track_name = $(this).text();
+		var artist = $(this).data('artist');
+		var album = $(this).data('album');
+		var setlist_id = "<%= @setlist.id %>"
+		var current_user_id = "<%= current_user.id %>"
+		console.log(id);
+		console.log(track_name);
+		console.log(artist);
+		$('.setlist').append('<li id="' + id + '"data-id="' + id +
+		 					 '"data-artist"' + artist +'"data-name"' + track_name + 
+		 					 '"data-album"' + album + '"data-setlist"' + setlist_id +
+		 					 '"class="setlist-track">"' + track_name + '</li>');
+		$(this).toggle("fast");
+		$.ajax({
+	    type: "POST",
+	    // url: "/setlists/<%= @setlist.id %>/tracks",
+	    url: "/addTrack",
+	    data: {
+    		track: {
+	    			title: track_name,
+	    			artist: artist,
+	    			spotify_track_id: id,
+	    			album: album,
+	    			setlist_id: setlist_id
+	    		},
+	    	user_id: current_user_id,
+	    	setlist_id: setlist_id
+	    	}
+	  	});
+	});
+	// $('#setlist-save').click(function(event) {
+
+	// 	/* Act on the event */
+	// 	var id = "<%= current_user.id %>"
+	// 	$.ajax({
+	//     type: "POST",
+	//     url: "/setlists/<%= @setlist.id %>/tracks",
+	//     data: {
+ //    		track: {
+	//     			tracks: JSON.stringify(tracks_hash)
+	//     		},
+	//     	user_id: id
+	//     	}
+	//   	});
+	// });
+
+
+</script>
+<% end %>

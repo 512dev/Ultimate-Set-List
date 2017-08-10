@@ -2,7 +2,7 @@ class SetlistsController < ApplicationController
   before_action :set_setlist, only: [:show, :edit, :update, :destory]
   def new
     @setlist = Setlist.new
-    authorize @setlist
+    # authorize @setlist
 
     # artist_search = RSpotify::Artist.search('Black Sabbath')
     # artist = artist_search.first
@@ -11,7 +11,7 @@ class SetlistsController < ApplicationController
 
   def create
     @setlist = Setlist.new(setlist_params)
-    authorize @setlist
+    # authorize @setlist
 
     respond_to do |format|
       if @setlist.save
@@ -26,10 +26,17 @@ class SetlistsController < ApplicationController
   end
 
   def show
-    authorize @setlist
-    artist_search = RSpotify::Artist.search(@setlist.artist)
-    artist = artist_search.first
-    @albums = artist.albums(limit: 50, country: current_user.market)
+    # authorize @setlist
+    # artist_search = RSpotify::Artist.search(@setlist.artist)
+    # artist = artist_search.first
+    # @albums = artist.albums(limit: 50, country: current_user.market)
+  end
+  def update
+    print "The set list contains: #{params[:tracks]}"
+    respond_to do |format|
+      @setlist.update(setlist_params)
+      format.html { redirect_to setlist_path(@setlist, @user), notice: 'Set was successfully edited.' }
+    end
   end
 
   private
@@ -39,6 +46,6 @@ class SetlistsController < ApplicationController
   end
 
   def setlist_params
-    params.require(:setlist).permit(:name, :artist, :user_id)
+    params.require(:setlist).permit(:name, :artist, :user_id, :tracks)
   end
 end

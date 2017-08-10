@@ -1,0 +1,2 @@
+$("#setlist-tracks").html('');
+$("#setlist-tracks").html("<%= j render '/setlists/setlist-tracks', locals: {tracks: @tracks, setlist: @setlist}%>");

@@ -1,21 +1,14 @@
-class TracksController < ApplicationController
-  before_action :set_setlist, only: [:index, :create]
+class SetListTrackController < ApplicationController
+  before_action :set_setlist, only: [:create]
   before_action :set_user, only: [:create]
-  def index
-    p @setlist
-    artist_search = RSpotify::Artist.search(@setlist.artist)
-    artist = artist_search.first
-    @albums = artist.albums(limit: 50, country: current_user.market)
-    # @setlist.tracks.nil? ? @tracks = [] : @tracks = @setlist.tracks
-  end
 
   def create
+    setlist = Setlist.find(track_params[:setlist_id])
     respond_to do |format|
       # track = JSON.parse(track_params[:track])
       x = Track.new(track_params)
+      setlist.tracks << x
       x.save
-      # format.html { redirect_to setlist_path(@setlist, @user), method: :put, notice: 'Set was successfully edited.' }
-      # format.html
       format.js
     end
   end
