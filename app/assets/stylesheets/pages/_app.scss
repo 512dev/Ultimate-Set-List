@@ -8,6 +8,10 @@
 	width: 100px;
 	height: 100px;
 }
+.artist-image{
+	width: 150px;
+	height: 150px;
+}
 .album-card{
 	background-color: $darkgray;
 	margin: 15px;
@@ -23,6 +27,7 @@
 	height: 100vh;
 	overflow: scroll;
 	position: relative;
+	margin-top: 15px;
 }
 .nav-icon{
 	width: 30px;
@@ -68,4 +73,27 @@
 }
 .setlist-track{
 	color: white;
+
+}
+.setlist-details{
+	display: flex;
+	justify-content: flex-start;
+	padding: 20px 20px 0px 20px;
+	border-bottom: 2px solid $brand-color;
+}
+.artist-details{
+	margin-left: 20px;
+	padding: 5px;
+
+	h1{
+		color: white;
+		margin-top: 0px;
+	}
+	h2{
+		color: white;
+	}
+	li{
+		color: $ltgray;
+		font-size: 0.7em;
+	}
 }
