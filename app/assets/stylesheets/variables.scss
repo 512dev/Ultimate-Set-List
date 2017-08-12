@@ -11,7 +11,7 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
-$brand-color: #CBA135;
+$brand-color: #FFDB00;
 
 $red: #FF5340;
 $blue: #40D6FF;
@@ -25,7 +25,7 @@ $darkgray: #3B3B3B;
 $black: #131313;
 
 // Box Shadows
-$avatar-box-shadow: 2px 2px 8px $ltgray;
+$avatar-box-shadow: 1px 2px 10px $brand-color;
 
 h1, h2, h3, h4, h5, h6{
 	font-family: $header-font;
