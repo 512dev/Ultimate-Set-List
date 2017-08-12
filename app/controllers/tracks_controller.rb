@@ -2,10 +2,10 @@ class TracksController < ApplicationController
   before_action :set_setlist, only: [:index, :create]
   before_action :set_user, only: [:create]
   def index
-    p @setlist
+    @tracks = @setlist.tracks
     artist_search = RSpotify::Artist.search(@setlist.artist)
-    artist = artist_search.first
-    @albums = artist.albums(limit: 50, country: current_user.market)
+    @artist = artist_search.first
+    @albums = @artist.albums(limit: 50, country: current_user.market)
     # @setlist.tracks.nil? ? @tracks = [] : @tracks = @setlist.tracks
   end
 

@@ -27,8 +27,9 @@ class SetlistsController < ApplicationController
 
   def show
     # authorize @setlist
-    # artist_search = RSpotify::Artist.search(@setlist.artist)
-    # artist = artist_search.first
+    artist_search = RSpotify::Artist.search(@setlist.artist)
+    @artist = artist_search.first
+    @tracks = @setlist.tracks
     # @albums = artist.albums(limit: 50, country: current_user.market)
   end
   def update

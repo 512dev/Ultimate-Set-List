@@ -1,6 +1,6 @@
 <div class="app-container">
 	<div class="row">
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-6 col-xs-12 col-md-offset-3">
 			<div class="track-album-container">
 				<div class="nav-container">
 					<%= render "setlists/track_nav" %>
@@ -18,25 +18,5 @@
 	}
 </style>
 
-<% content_for :javascript do %>
-<script type="text/javascript">
 
-	// $(".album-card").click(function(event) {
-		// var id = $(this).attr('id').toString()
-		// $('#album-track-'+id).toggle();
-	// });
-	$(".album-container").on('click', '.album-card', function(event) {
-		event.preventDefault();
-		/* Act on the event */
-		var id = $(this).attr('id').toString()
-		$('#album-track-'+id).toggle('slow');
-	});
-
-	$('#track-link').click(function(event) {
-		$('.album-container').html('');
-		$('.album-container').html("<%= j render 'setlists/track', local: @albums %>");
-	});
-
-</script>
-<% end %>
 		

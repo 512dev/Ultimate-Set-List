@@ -4,7 +4,7 @@
 <% else %>
 	<ol>
 		<% @tracks.each do |track| %>
-			<li class="setlist-track"><%= track.name %> <p class="track-album">from <%= track.album %></p></li>
+			<li class="setlist-track"><%= track.title %> <p class="track-album">from <%= track.album %></p></li>
 		<% end %>
 	</ol>
 <% end %>
