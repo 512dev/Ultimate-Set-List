@@ -33,12 +33,13 @@
 				<%= render "setlists/track_nav" %>
 			</div>
 				<div id="setlist-tracks">
-<!-- 					<ol class="setlist">
-						<%# @setlist.tracks.each do |track| %>
-							<li id="<%#= track.id %>"><%#= track.name %></li>
-						<%# end %>
-					</ol> -->
+					<ol class="setlist">
+						<% @tracks.each do |track| %>
+							<li id="<%= track.id %>" class="setlist-track"><%= track.title %></li>
+						 <% end  %>
+					</ol>
 				</div>
+				<%= link_to "Back", setlist_path(@setlist) %>
 			</div>
 		</div>
 	</div>

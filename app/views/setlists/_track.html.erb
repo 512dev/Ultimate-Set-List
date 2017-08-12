@@ -1,17 +1,10 @@
-<!-- <ol>
-	<%# @albums.each do |album| %>
-		<%# album.tracks.each do |track| %>
-			<li><%#= track.name %></li>
-		<%# end %>
-	<%# end %>
-</ol>	 -->
-<% if @setlist.tracks.empty? %>
+<% if @tracks.empty? %>
 	<h2>No Tracks in this setlist yet.</h2>
 	<%= link_to "Click Here to Add Songs", setlist_tracks_path(@setlist) %>
 <% else %>
 	<ol>
-		<% @setlist.tracks.each do |track| %>
-			<li><%= track.name %></li>
+		<% @tracks.each do |track| %>
+			<li class="setlist-track"><%= track.title %> <p class="track-album">from <%= track.album %></p></li>
 		<% end %>
 	</ol>
 <% end %>
