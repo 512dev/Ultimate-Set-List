@@ -1,5 +1,5 @@
 class SetlistsController < ApplicationController
-  before_action :set_setlist, only: [:show, :edit, :update, :destory]
+  before_action :set_setlist, only: [:show, :edit, :update, :destroy]
   def new
     @setlist = Setlist.new
     # authorize @setlist
@@ -7,6 +7,10 @@ class SetlistsController < ApplicationController
     # artist_search = RSpotify::Artist.search('Black Sabbath')
     # artist = artist_search.first
     # @albums = artist.albums(limit: 50, country: current_user.market)
+  end
+  def index
+    @user = current_user
+
   end
 
   def create
@@ -37,6 +41,13 @@ class SetlistsController < ApplicationController
     respond_to do |format|
       @setlist.update(setlist_params)
       format.html { redirect_to setlist_path(@setlist, @user), notice: 'Set was successfully edited.' }
+    end
+  end
+  def destroy
+    
+    @setlist.destroy
+    respond_to do |format|
+      format.html {redirect_to setlists_path(@user)}
     end
   end
 
