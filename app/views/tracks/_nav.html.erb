@@ -1,0 +1,16 @@
+<div class="setlist-nav">
+	<div class="setlist-details">
+<!-- 		<div class="artist-image">
+			<%#= image_tag @artist.images[0]["url"], class: "artist-image" %> 
+		</div> -->
+		<div class="artist-details">
+			<h5 style="color: white;"><%= @setlist.name %></h5>
+			<h6 style="color: white;"><%= @artist.name %></h6>
+			<ul class="list-inline">
+				<% @artist.genres.first(4).each do |genre| %>
+				<li><%= genre %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
