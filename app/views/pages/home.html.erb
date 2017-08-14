@@ -5,7 +5,9 @@
 			<p>Your favorite band playing your favorite music in your ideal venue</p>
 		</div>
 		<%# if user_signed_in? %>
-			<%= link_to "Start a Setlist", new_setlist_path, class: "btn btn-primary"  %>
+		<div class="text-center top-margin">
+			<%= link_to "Start a Setlist", new_setlist_path, class: "btn btn-primary btn-back-fade"  %>
+		</div>
 		<%# else %>
 			<%#= link_to "Sign In", new_user_session_path, class: "btn btn-primary" %>
 		<%# end %>

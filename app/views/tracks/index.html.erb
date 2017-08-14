@@ -1,7 +1,7 @@
 <div class="app-container">
 	<div class="row">
 		<div class="col-md-6 col-xs-12 col-md-offset-1">
-			<div class="tracks-container">
+			<div class="tracks-container" id="style-2">
 			  <ul class="list-unstyled">
 			  <% @albums.each do |album| %>
 				<li>
@@ -30,7 +30,7 @@
 		<div class="col-md-3">
 			<div class="setlist-sidebar">
 			<div class="nav-container">
-				<%= render "setlists/track_nav" %>
+				<%= render "tracks/nav" %>
 			</div>
 				<div id="setlist-tracks">
 					<ol class="setlist">
@@ -39,7 +39,8 @@
 						 <% end  %>
 					</ol>
 				</div>
-				<%= link_to "Back", setlist_path(@setlist) %>
+				<%= link_to "Back", setlist_path(@setlist), class: "btn btn-primary btn-back-fade" %>
+				<%= link_to "Add Venue", setlist_venue_index_path(@setlist), class: "btn btn-primary btn-back-fade" %>
 			</div>
 		</div>
 	</div>

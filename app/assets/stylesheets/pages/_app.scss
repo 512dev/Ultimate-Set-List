@@ -2,7 +2,7 @@
 	width: 95%;
 	padding: 0 15px;
 	margin: 0 auto;
-
+	height: calc(100vh - 50px);
 }
 .album-image{
 	width: 100px;
@@ -61,10 +61,6 @@
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: $brand-color;
 }
-.track-search{
-	color: white;
-	font-size: 1.5em;	
-}
 .album-tracks{
 	display: none;
 }
@@ -76,6 +72,11 @@
 	padding: 10px;
 	border-bottom: 1px solid $darkgray;
 
+}
+.setlist-sidebar{
+	background-color: $darkgray;
+	padding: 10px;
+	margin-top: 15px;
 }
 .setlist-details{
 	display: flex;
@@ -104,4 +105,27 @@
 	font-size: 0.8em;
 	color: $ltgray;
 
+}
+.btn-back-fade{
+	// background: linear-gradient(to bottom, black, $darkgray 25%, $darkgray 75%, black 100%);
+		background: linear-gradient(-168deg, black, $darkgray 100%);
+
+	background-color: $darkgray;
+	// border-color: $darkgray;
+	border-color: black;
+	color: $brand-color;
+}
+.btn-back-fade:hover{
+	background: black;
+	color: $brand-color;
+	border-color: black;
+}
+.top-margin{
+	margin-top: 50px;
+}
+.tracks-container{
+	overflow-y: scroll;
+	height: calc(100vh - 80px);
+	background-color: black;
+	margin: 15px 0;
 }
