@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :setlists do
+    get "/generate_playlist", to: 'setlists#generate_playlist'
     resources :tracks, only: [:index, :create]
     resources :comments, except: [:index, :show]
     resources :favorite, except: [:show]

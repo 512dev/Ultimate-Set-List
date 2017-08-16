@@ -22,6 +22,6 @@ class SetListTrackController < ApplicationController
     @user = User.find(params[:user_id])
   end
   def track_params
-    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id)
+    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id, :uri)
   end
 end

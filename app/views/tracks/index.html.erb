@@ -18,7 +18,7 @@
 					<div class="album-tracks" id="album-track-<%= album.id %>">
 						<ol>
 							<% album.tracks.each do |track| %>
-							  <li id="<%= track.id %>" class="track" data-id="<%= track.id %>" data-name="<%= track.name %>" data-artist="<%= track.artists[0].name %>" data-album="<%= track.album.name %>"><%= track.name %></li>
+							  <li id="<%= track.id %>" class="track" data-id="<%= track.id %>" data-name="<%= track.name %>" data-artist="<%= track.artists[0].name %>" data-album="<%= track.album.name %>" data-uri="<%= track.uri %>"><%= track.name %></li>
 							<% end %>
 						</ol>	
 					</div>	
@@ -54,7 +54,7 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
 
-var tracks_hash = []
+// var tracks_hash = []
 
 	$(".tracks-container").on('click', '.album-card', function(event) {
 		event.preventDefault();
@@ -69,6 +69,7 @@ var tracks_hash = []
 		var track_name = $(this).text();
 		var artist = $(this).data('artist');
 		var album = $(this).data('album');
+		var uri = $(this).data('uri');
 		var setlist_id = "<%= @setlist.id %>"
 		var current_user_id = "<%= current_user.id %>"
 		console.log(id);
@@ -89,7 +90,8 @@ var tracks_hash = []
 	    			artist: artist,
 	    			spotify_track_id: id,
 	    			album: album,
-	    			setlist_id: setlist_id
+	    			setlist_id: setlist_id,
+	    			uri: uri
 	    		},
 	    	user_id: current_user_id,
 	    	setlist_id: setlist_id

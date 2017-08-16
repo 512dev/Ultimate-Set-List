@@ -14,8 +14,12 @@ class SetlistsController < ApplicationController
   end
 
   def create
+    artist_search = RSpotify::Artist.search(setlist_params[:artist])
+    artist = artist_search.first
+    image = artist.images[0]["url"]
     @setlist = Setlist.new(setlist_params)
     # authorize @setlist
+    @setlist.artist_photo = image
 
     respond_to do |format|
       if @setlist.save
@@ -50,6 +54,22 @@ class SetlistsController < ApplicationController
       format.html {redirect_to setlists_path(@user)}
     end
   end
+  def generate_playlist
+    setlist = Setlist.find(params[:setlist_id])
+    # spotify_user_hash = current_user.to_hash
+    p current_user.attributes
+    spotify_user = RSpotify::User.new(current_user.attributes)
+    spotify_user.instance_variable_set(:@id, current_user.username)
+    list = spotify_user.create_playlist!(setlist.name, public: true)
+    tracks = []
+    setlist.tracks.each do |track|
+      tracks << track.uri
+    end
+    list.add_tracks!(tracks)
+    respond_to do |format|
+      format.html { redirect_to setlist_path(setlist, @user), notice: 'Playlist successfully created!.' }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -58,6 +78,6 @@ class SetlistsController < ApplicationController
   end
 
   def setlist_params
-    params.require(:setlist).permit(:name, :artist, :user_id, :tracks)
+    params.require(:setlist).permit(:name, :artist, :user_id, :tracks, :artist_photo, :setlist_id)
   end
 end

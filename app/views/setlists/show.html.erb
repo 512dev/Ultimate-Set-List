@@ -9,6 +9,12 @@
 					<%= render "setlists/track" %>
 				</div>
 			</div>
+			<div class="setlist-actions">
+				<%= link_to "Add Tracks", setlist_tracks_path(@setlist), class: "btn btn-primary btn-back-fade" %>
+				<%= link_to "Add Venue", setlist_venue_index_path(@setlist), class: "btn btn-primary btn-back-fade" %>
+				<div class="btn btn-primary btn-back-fade"><p>Add Ticket</p></div>
+				<%= link_to "Generate Playlist", setlist_generate_playlist_path(@setlist), class: "btn btn-primary btn-back-fade" %>
+			</div>
 		</div>
 	</div>
 </div>
@@ -17,6 +23,11 @@
 		background-color: #272727;
 	}
 </style>
+<% content_for :javascript do %>
+  <script type="text/javascript">
+
+  </script>
+<% end %>
 
 
 		
