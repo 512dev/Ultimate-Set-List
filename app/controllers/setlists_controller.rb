@@ -59,15 +59,15 @@ class SetlistsController < ApplicationController
     # spotify_user_hash = current_user.to_hash
     p current_user.attributes
     spotify_user = RSpotify::User.new(current_user.attributes)
-    p spotify_user
+    spotify_user.instance_variable_set(:@id, current_user.username)
     list = spotify_user.create_playlist!(setlist.name, public: true)
     tracks = []
     setlist.tracks.each do |track|
-      tracks << track.spotify_track_id
+      tracks << track.uri
     end
     list.add_tracks!(tracks)
     respond_to do |format|
-      format.html { redirect_to setlist_path(@setlist, @user), notice: 'Playlist successfully created!.' }
+      format.html { redirect_to setlist_path(setlist, @user), notice: 'Playlist successfully created!.' }
     end
   end
 

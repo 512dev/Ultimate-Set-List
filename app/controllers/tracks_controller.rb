@@ -5,17 +5,14 @@ class TracksController < ApplicationController
     @tracks = @setlist.tracks
     artist_search = RSpotify::Artist.search(@setlist.artist)
     @artist = artist_search.first
-    @albums = @artist.albums(limit: 20, country: current_user.market, album_type: 'album,single')
+    @albums = @artist.albums(limit: 20, country: current_user.country, album_type: 'album,single')
     # @setlist.tracks.nil? ? @tracks = [] : @tracks = @setlist.tracks
   end
 
   def create
     respond_to do |format|
-      # track = JSON.parse(track_params[:track])
       x = Track.new(track_params)
       x.save
-      # format.html { redirect_to setlist_path(@setlist, @user), method: :put, notice: 'Set was successfully edited.' }
-      # format.html
       format.js
     end
   end
@@ -29,6 +26,6 @@ class TracksController < ApplicationController
     @user = User.find(params[:user_id])
   end
   def track_params
-    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id)
+    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id, :uri)
   end
 end

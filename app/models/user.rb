@@ -15,13 +15,17 @@ class User < ApplicationRecord
 
   def self.find_for_spotify_oauth(auth)
     user_params = {}
-    user_params[:market] = auth['country']
+    user_params[:country] = auth['country']
     user_params[:email] =  auth['email']
     user_params[:username] = auth["id"]
+    user_params[:uri] = auth["uri"]
     user_params[:name] = auth["display_name"]
     user_params[:image] = auth['images'][0].url
     user_params[:token] = auth['credentials'].token
+    user_params[:refresh_token] = auth['credentials'].refresh_token
+    p "Refresh Token is: #{user_params[:refresh_token]}"
     user_params[:token_expiry] = Time.at(auth['credentials'].expires_at)
+    user_params[:spotify_id] = auth['id']
     user_params = user_params.to_h
 
     user = User.find_by(username: auth['id'])

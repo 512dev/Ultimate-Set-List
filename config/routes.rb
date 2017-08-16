@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :favorite, except: [:show]
     resources :venue, only: [:index, :show, :create]
   end
-  # post "/addTrack", to: 'set_list_track#create'
+  post "/addTrack", to: 'set_list_track#create'
   root 'pages#home'
 end
