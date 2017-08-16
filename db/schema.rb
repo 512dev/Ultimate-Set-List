@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809122313) do
+ActiveRecord::Schema.define(version: 20170816043615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,12 @@ ActiveRecord::Schema.define(version: 20170809122313) do
     t.integer  "venue_id"
     t.integer  "user_id"
     t.integer  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "votes"
     t.string   "favorites"
     t.string   "artist"
+    t.string   "artist_photo"
     t.index ["user_id"], name: "index_setlists_on_user_id", using: :btree
     t.index ["venue_id"], name: "index_setlists_on_venue_id", using: :btree
   end

@@ -2,11 +2,11 @@
 <div class="setlist-nav">
 	<div class="setlist-details">
 		<div class="artist-image">
-			<%= image_tag @artist.images[0]["url"], class: "artist-image" %> 
+			<%= image_tag @setlist.artist_photo, class: "artist-image" %> 
 		</div>
 		<div class="artist-details">
 			<h1><%= @setlist.name %></h1>
-			<h2><%= @artist.name %></h2>
+			<h2><%= @setlist.artist %></h2>
 			<ul class="list-inline">
 				<% @artist.genres.first(4).each do |genre| %>
 				<li><%= genre %></li>

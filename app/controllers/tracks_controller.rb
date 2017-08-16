@@ -5,7 +5,7 @@ class TracksController < ApplicationController
     @tracks = @setlist.tracks
     artist_search = RSpotify::Artist.search(@setlist.artist)
     @artist = artist_search.first
-    @albums = @artist.albums(limit: 50, country: current_user.market)
+    @albums = @artist.albums(limit: 20, country: current_user.market, album_type: 'album,single')
     # @setlist.tracks.nil? ? @tracks = [] : @tracks = @setlist.tracks
   end
 
