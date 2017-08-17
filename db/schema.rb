@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816112717) do
+ActiveRecord::Schema.define(version: 20170817005418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170816112717) do
     t.string   "favorites"
     t.string   "artist"
     t.string   "artist_photo"
+    t.string   "venue"
     t.index ["user_id"], name: "index_setlists_on_user_id", using: :btree
     t.index ["venue_id"], name: "index_setlists_on_venue_id", using: :btree
   end
@@ -68,6 +69,8 @@ ActiveRecord::Schema.define(version: 20170816112717) do
     t.string   "album"
     t.string   "spotify_track_id"
     t.string   "uri"
+    t.string   "setlist"
+    t.string   "user"
     t.index ["setlist_id"], name: "index_tracks_on_setlist_id", using: :btree
     t.index ["user_id"], name: "index_tracks_on_user_id", using: :btree
   end

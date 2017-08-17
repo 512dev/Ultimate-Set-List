@@ -33,12 +33,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'figaro'
-gem "bootstrap-sass"
-gem "font-awesome-sass"
-gem "simple_form"
-gem "autoprefixer-rails"
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'simple_form'
+gem 'autoprefixer-rails'
 gem 'rspotify', git: 'https://github.com/guilhermesad/rspotify.git'
-gem "pundit"
+gem 'pundit'
 
 
 # Use Capistrano for deployment
@@ -47,8 +47,8 @@ gem "pundit"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -61,4 +61,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
