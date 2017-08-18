@@ -63,7 +63,7 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'rspotify'#, git: 'https://github.com/guilhermesad/rspotify.git'
-gem 'pundit'
+# gem 'pundit'
 
 
 
