@@ -45,7 +45,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-gem 'rspotify', git: 'https://github.com/guilhermesad/rspotify.git'
+gem 'rspotify'#, git: 'https://github.com/guilhermesad/rspotify.git'
 gem 'pundit'
 
 
