@@ -25,7 +25,7 @@ class User < ApplicationRecord
     user_params[:refresh_token] = auth['credentials'].refresh_token
     p "Refresh Token is: #{user_params[:refresh_token]}"
     user_params[:token_expiry] = Time.at(auth['credentials'].expires_at)
-    user_params[:spotify_id] = auth['id']
+    user_params[:spotify_id] = auth["id"]
     user_params = user_params.to_h
 
     user = User.find_by(username: auth['id'])
