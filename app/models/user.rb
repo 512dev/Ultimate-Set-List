@@ -10,9 +10,6 @@ class User < ApplicationRecord
    has_many :votes, dependent: :destroy
    has_many :favorites, dependent: :destroy
 
-
-
-
   def self.find_for_spotify_oauth(auth)
     user_params = {}
     user_params[:country] = auth['country']
