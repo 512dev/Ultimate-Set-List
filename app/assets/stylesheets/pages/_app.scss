@@ -1,8 +1,22 @@
+.align-verticle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column{
+	flex-direction: column;
+}
+
+
 .app-container{
 	width: 95%;
 	padding: 0 15px;
 	margin: 0 auto;
 	height: calc(100vh - 50px);
+}
+.app-background{
+	background-color: $black;
+
 }
 .album-image{
 	width: 100px;
@@ -124,11 +138,8 @@
 
 }
 .btn-back-fade{
-	// background: linear-gradient(to bottom, black, $darkgray 25%, $darkgray 75%, black 100%);
-		background: linear-gradient(-168deg, black, $darkgray 100%);
-
+	background: linear-gradient(-168deg, black, $darkgray 100%);
 	background-color: $darkgray;
-	// border-color: $darkgray;
 	border-color: black;
 	color: $brand-color;
 }
@@ -145,4 +156,61 @@
 	height: calc(100vh - 80px);
 	background-color: black;
 	margin: 15px 0;
+}
+.sign-in{
+	height: 93vh;
+	background-image: linear-gradient(to right, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0.6) 65%), url('https://static.pexels.com/photos/167491/pexels-photo-167491.jpeg');
+	background-size: cover;
+	background-position: center;
+}
+.form-container{
+	height: 91vh;
+
+	i{
+		font-size: 8em;
+		color: #1ED760;
+		width: 0 auto;
+		transition: color 1s;
+	}
+	i:hover{
+		color: $brand-color;
+	}
+}
+.form-control{
+		background-color: transparent;
+		border: 2px solid $brand-color;
+		border-radius: 10px;
+		color: white;
+}
+.form-control:focus{
+	border-color: white;
+}
+.btn-signin{
+	margin-top: 40px;
+	color: white;
+	border: 2px solid #1ED760;
+	border-radius: 25px;
+	background-color: transparent;
+	transition: border-color 0.75s;
+}
+.btn-signin:hover{
+	background-color: transparent;
+	border-color: $brand-color;
+}
+.setlists-container{
+	background-color: $darkgray;
+	padding: 20px;
+	h2{
+		color: white;
+		margin-top: 10px;
+	}
+	a{
+		color: $brand-color;
+	}
+}
+.form-brand-color{
+	color: $brand-color;
+}
+.fullscreen{
+	height: 91vh;
 }

@@ -1,28 +1,41 @@
-
-<div class="container">
-	<% if @user.setlists.empty? %>
-		<h2>None Yet</h2>
-		<%= link_to "Get started with a new setlist", new_setlist_path(@user) %>
-	<% else %>
-	<% @user.setlists.each do |setlist| %>
-	  <div class="row">
-	  	  <div class="col-xs-12">
-			<div class="setlist-row-container">
-				<div class="setlist-row-image">
-					<%#= image_tag setlist.artist.images[0]["url"], class: "artist-image" %>
+<div class="app-background">
+	<div class="container">
+		<% if @user.setlists.empty? %>
+		<div class="row">
+			<div class="col-xs-12 col-md-6 col-md-offset-3">
+				<div class="setlists-container">
+					<h2>None Yet</h2>
+					<%= link_to "Get started with a new setlist", new_setlist_path(@user) %>
 				</div>
-			<%= link_to setlist_path(setlist) do %>
-				<div class="setlist-row-details">
-					<h4><%= setlist.name %></h4>
-					<h6><%= setlist.artist %></h6>
-				</div>
-			 <% end %>
-				<%= link_to "Delete", setlist_path(setlist), method: :delete %>
-				<%= link_to "Add Tracks", setlist_tracks_path(setlist) %>
 			</div>
+		</div>
+		<% else %>
+		<% @user.setlists.each do |setlist| %>
+		  <div class="row">
+		  	  <div class="col-xs-12">
+				<div class="setlist-row-container">
+					<div class="setlist-row-image">
+						<%#= image_tag setlist.artist.images[0]["url"], class: "artist-image" %>
+					</div>
+				<%= link_to setlist_path(setlist) do %>
+					<div class="setlist-row-details">
+						<h4><%= setlist.name %></h4>
+						<h6><%= setlist.artist %></h6>
+					</div>
+				 <% end %>
+					<%= link_to "Delete", setlist_path(setlist), method: :delete %>
+					<%= link_to "Add Tracks", setlist_tracks_path(setlist) %>
+				</div>
+			  </div>
 		  </div>
-	  </div>
-	<% end %>
-	<% end %>
+		<% end %>
+		<% end %>
 
+	</div>
+	
 </div>
+<style>
+	body{
+		background-color: #131313;
+	}
+</style>
