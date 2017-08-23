@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816112717) do
+ActiveRecord::Schema.define(version: 20170823085725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(version: 20170816112717) do
   create_table "tracks", force: :cascade do |t|
     t.string   "title"
     t.integer  "setlist_id"
-    t.string   "artist"
+    t.string   "album"
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "album"
     t.string   "spotify_track_id"
     t.string   "uri"
+    t.string   "artist"
     t.index ["setlist_id"], name: "index_tracks_on_setlist_id", using: :btree
     t.index ["user_id"], name: "index_tracks_on_user_id", using: :btree
   end
@@ -86,17 +86,14 @@ ActiveRecord::Schema.define(version: 20170816112717) do
     t.string   "username"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "spotify_id"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "image"
     t.string   "name"
     t.string   "token"
     t.datetime "token_expiry"
-    t.string   "market"
     t.string   "refresh_token"
     t.string   "uri"
     t.string   "country"
+    t.string   "spotify_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

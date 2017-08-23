@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_setlist, only: [:index, :create]
+  before_action :set_setlist, only: [:index, :create, :destroy]
   before_action :set_user, only: [:create]
   def index
     @tracks = @setlist.tracks
@@ -16,6 +16,14 @@ class TracksController < ApplicationController
       format.js
     end
   end
+  def destroy
+    @track = Track.find(params[:id])
+    @track.destroy
+    p "The Setlist is #{@setlist.id}"
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -26,6 +34,6 @@ class TracksController < ApplicationController
     @user = User.find(params[:user_id])
   end
   def track_params
-    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id, :uri)
+    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id, :uri, :id)
   end
 end

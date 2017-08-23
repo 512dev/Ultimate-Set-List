@@ -26,7 +26,7 @@
 	height: 150px;
 }
 .album-card{
-	background-color: $darkgray;
+	background-color: $black;
 	margin: 15px;
 	color: white;
 	padding: 17px;
@@ -41,6 +41,16 @@
 	overflow-y: scroll;
 	position: relative;
 	margin-top: 15px;
+	padding: 15px;
+	h2{
+		color: white;
+	}
+	a{
+		color: white;
+	}
+	a:hover{
+		color: white;
+	}
 }
 .setlist-actions{
 	display: flex;
@@ -99,12 +109,13 @@
 }
 .setlist-track{
 	color: white;
-	padding: 10px;
+	margin-bottom: 10px;
 	border-bottom: 1px solid $darkgray;
+	display: block;
 
 }
 .setlist-sidebar{
-	background-color: $darkgray;
+	background-color: $black;
 	padding: 10px;
 	margin-top: 15px;
 }
@@ -235,8 +246,22 @@
 .fa-icon-lg{
 	font-size: 1.4em;
 }
+.fa-icon-md{
+	font-size: 1.1em;
+}
 .icon-fixed-top-right{
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+.setlist-track-flex{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.setlist-track-details{
+	p{
+		margin-bottom: 0px;
+	}
 }
