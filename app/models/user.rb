@@ -10,9 +10,6 @@ class User < ApplicationRecord
    has_many :votes, dependent: :destroy
    has_many :favorites, dependent: :destroy
 
-
-
-
   def self.find_for_spotify_oauth(auth)
     user_params = {}
     user_params[:country] = auth['country']
@@ -25,7 +22,7 @@ class User < ApplicationRecord
     user_params[:refresh_token] = auth['credentials'].refresh_token
     p "Refresh Token is: #{user_params[:refresh_token]}"
     user_params[:token_expiry] = Time.at(auth['credentials'].expires_at)
-    user_params[:spotify_id] = auth['id']
+    user_params[:spotify_id] = auth["id"]
     user_params = user_params.to_h
 
     user = User.find_by(username: auth['id'])
