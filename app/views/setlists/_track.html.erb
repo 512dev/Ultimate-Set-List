@@ -1,10 +1,19 @@
-<% if @tracks.empty? %>
+<% if @setlist.tracks.empty? %>
 	<h2>No Tracks in this setlist yet.</h2>
 	<%= link_to "Click Here to Add Songs", setlist_tracks_path(@setlist) %>
 <% else %>
-	<ol>
-		<% @tracks.each do |track| %>
-			<li class="setlist-track"><%= track.title %> <p class="track-album">from <%= track.album %></p></li>
+	<ul>
+		<% @setlist.tracks.each do |track| %>
+			<li class="setlist-track">
+					<div class="setlist-track-flex">
+						<div class="setlist-track-details">
+							<p><%= track.title %> <span class="track-album">from <%= track.album %></span></p> 
+						</div>
+						<%= link_to setlist_track_path(@setlist, track), remote: true, method: :delete do %>
+						  <i class="fa fa-times-circle brand-color" aria-hidden="true"></i>
+						<% end %>
+					</div>
+			</li>
 		<% end %>
-	</ol>
+	</ul>
 <% end %>

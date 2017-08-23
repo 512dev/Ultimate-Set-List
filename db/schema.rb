@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819045130) do
+
+ActiveRecord::Schema.define(version: 20170823085725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,17 +59,20 @@ ActiveRecord::Schema.define(version: 20170819045130) do
     t.index ["venue_id"], name: "index_setlists_on_venue_id"
   end
 
-  create_table "tracks", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.integer "setlist_id"
-    t.string "album"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "spotify_track_id"
-    t.string "uri"
-    t.index ["setlist_id"], name: "index_tracks_on_setlist_id"
-    t.index ["user_id"], name: "index_tracks_on_user_id"
+
+  create_table "tracks", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "setlist_id"
+    t.string   "album"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "spotify_track_id"
+    t.string   "uri"
+    t.string   "artist"
+    t.index ["setlist_id"], name: "index_tracks_on_setlist_id", using: :btree
+    t.index ["user_id"], name: "index_tracks_on_user_id", using: :btree
+
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -80,21 +84,23 @@ ActiveRecord::Schema.define(version: 20170819045130) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image"
-    t.string "name"
-    t.string "token"
+
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "username"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "image"
+    t.string   "name"
+    t.string   "token"
     t.datetime "token_expiry"
-    t.string "refresh_token"
-    t.string "uri"
-    t.string "country"
-    t.string "spotify_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.string   "refresh_token"
+    t.string   "uri"
+    t.string   "country"
+    t.string   "spotify_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
   end
 
   create_table "venues", id: :serial, force: :cascade do |t|

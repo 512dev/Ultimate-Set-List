@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   resources :setlists do
     get "/generate_playlist", to: 'setlists#generate_playlist'
-    resources :tracks, only: [:index, :create]
+    resources :tracks, only: [:index, :create, :destroy]
     resources :comments, except: [:index, :show]
     resources :favorite, except: [:show]
     resources :venue, only: [:index, :show, :create]

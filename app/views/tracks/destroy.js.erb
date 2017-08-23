@@ -1,0 +1,2 @@
+$(".album-container").html('');
+$(".album-container").html("<%= j render '/setlists/track', locals: {tracks: @tracks, setlist: @setlist}%>");
