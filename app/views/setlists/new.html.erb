@@ -1,21 +1,22 @@
 <div class="app-background fullscreen">
     <div class="row">
       <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <%= simple_form_for @setlist do |f| %>
-      <%= f.error_notification %>
+        <div class="form">
+          <%= simple_form_for @setlist do |f| %>
+            <%= f.error_notification %>
 
-      <div class="form-inputs form-brand-color">
-        <%= f.input :name, class: "form-inputs-custom" %>
-      </div>
-      <div class="form-inputs form-brand-color">
-        <%= f.input :artist, class: "form-inputs-custom" %>
-      </div>
-    <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
-      <div class="form-actions">
-        <%= f.button :submit, class: "btn-back-fade" %>
-      </div>
-    <% end %>  
-        
+            <div class="form-inputs form-brand-color">
+              <%= f.input :name, label: "Playlist Name:", class: "form-inputs-custom" %>
+            </div>
+            <div class="form-inputs form-brand-color">
+              <%= f.input :artist, label: "Artist Name:", class: "form-inputs-custom" %>
+            </div>
+          <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+            <div class="form-actions">
+              <%= f.button :submit, class: "btn-back-fade" %>
+            </div>
+          <% end %>       
+        </div>
       </div>
     </div>
   
