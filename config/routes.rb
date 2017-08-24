@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :tracks, only: [:index, :create, :destroy]
     resources :comments, except: [:index, :show]
     resources :favorite, except: [:show]
-    resources :venue, only: [:index, :show, :create]
+    resources :venue, only: [:index, :show, :create, :destroy]
   end
   post "/addTrack", to: 'set_list_track#create'
   root 'pages#home'

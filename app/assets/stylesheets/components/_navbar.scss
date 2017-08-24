@@ -76,3 +76,14 @@
   border-left: 1px solid $brand-color;
   border-top: 1px solid $brand-color;
 }
+.branding a{
+ color: $brand-color;
+ text-decoration: none;
+ :hover{
+  color: $brand-color-dark;
+  text-decoration: none;
+ }
+}
+.nav-logo{
+  font-size: 1.3em;
+}

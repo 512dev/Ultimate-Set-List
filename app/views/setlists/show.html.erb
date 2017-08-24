@@ -12,7 +12,7 @@
 			<div class="setlist-actions">
 				<%= link_to "Add Tracks", setlist_tracks_path(@setlist), class: "btn btn-primary btn-back-fade" %>
 				<%= link_to "Add Venue", setlist_venue_index_path(@setlist), class: "btn btn-primary btn-back-fade" %>
-				<div class="btn btn-primary btn-back-fade"><p>Add Ticket</p></div>
+				<div class="btn btn-primary btn-back-fade" id="ticket"><p>Add Ticket</p></div>
 				<%= link_to "Generate Playlist", setlist_generate_playlist_path(@setlist), class: "btn btn-primary btn-back-fade" %>
 			</div>
 		</div>
@@ -20,7 +20,10 @@
 </div>
 <% content_for :javascript do %>
   <script type="text/javascript">
-
+  	// $('#ticket').on('click', '.setlist-actions', function(event) {
+  	// 	event.preventDefault();
+  	// 	/* Act on the event */
+  	// });
   </script>
 <% end %>
 
