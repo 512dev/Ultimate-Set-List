@@ -47,12 +47,22 @@ end
 # gem 'autoprefixer-rails'
 gem 'devise'
 gem 'figaro'
+
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.3'
 gem 'redis'
 gem 'turbolinks'  #from rails, not LeWagon
+
+gem "bootstrap-sass"
+gem "font-awesome-sass"
+gem "simple_form"
+gem "autoprefixer-rails"
+gem 'rspotify', git: 'https://github.com/guilhermesad/rspotify.git'
+gem "pundit"
+gem 'google_places'
+
 
 gem 'autoprefixer-rails'
 gem 'coffee-rails'

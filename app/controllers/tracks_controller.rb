@@ -1,12 +1,12 @@
 class TracksController < ApplicationController
-  before_action :set_setlist, only: [:index, :create, :destroy]
+  before_action :set_setlist, only: [:index, :create, :destroy, :showTracks]
   before_action :set_user, only: [:create]
   def index
     @tracks = @setlist.tracks
     artist_search = RSpotify::Artist.search(@setlist.artist)
     @artist = artist_search.first
     @albums = @artist.albums(limit: 20, country: current_user.country, album_type: 'album,single')
-    # @setlist.tracks.nil? ? @tracks = [] : @tracks = @setlist.tracks
+    @setlist.tracks.nil? ? @tracks = [] : @tracks = @setlist.tracks
   end
 
   def create
@@ -24,6 +24,14 @@ class TracksController < ApplicationController
       format.js
     end
   end
+  def showTracks
+    respond_to do |format|
+      album = RSpotify::Album.find(track_params[:album_id])
+      @album_tracks = album.tracks
+      format.js
+    end
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -34,6 +42,6 @@ class TracksController < ApplicationController
     @user = User.find(params[:user_id])
   end
   def track_params
-    params.require(:track).permit(:title, :artist, :user_id, :album, :setlist_id, :spotify_track_id, :uri, :id)
+    params.require(:track).permit(:title, :artist, :user_id, :album, :album_id, :setlist_id, :spotify_track_id, :uri, :id)
   end
 end

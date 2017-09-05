@@ -28,5 +28,6 @@ module UltimateSetList
     RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET'])
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    # config.time_zone = 'Eastern Time (US & Canada)'
   end
 end

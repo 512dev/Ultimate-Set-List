@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :venue, only: [:index, :show, :create, :destroy]
   end
   post "/addTrack", to: 'set_list_track#create'
+  get "/showTracks", to: 'track#showTracks'
   root 'pages#home'
 end

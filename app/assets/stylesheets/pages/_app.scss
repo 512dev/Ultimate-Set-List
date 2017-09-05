@@ -150,7 +150,7 @@
 .btn-back-fade{
 	background: linear-gradient(-168deg, black, $darkgray 100%);
 	background-color: $darkgray;
-	border-color: black;
+	border-color: $darkgray;
 	color: $brand-color;
 }
 .btn-back-fade:hover{
