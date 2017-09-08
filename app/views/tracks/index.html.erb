@@ -13,15 +13,10 @@
 							<h3><%= album.name %></h3> 
 							<p><%= album.release_date %></p>
 						</div>
-						
 					</div>
 					<div class="album-tracks" id="album-track-<%= album.id %>">
 						<ol>
-							<% unless @album_tracks.null %>
-							<% @album_tracks.each do |track| %>
-							  <li id="<%= track.id %>" class="track" data-id="<%= track.id %>" data-name="<%= track.name %>" data-artist="<%= track.artists[0].name %>" data-album="<%= track.album.name %>" data-uri="<%= track.uri %>"><%= track.name %></li>
-							<% end %>
-						</ol>	
+						</ol>
 					</div>	
 				</li>
 			  <% end %>
@@ -50,26 +45,36 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
 
-// var tracks_hash = []
-
 	$(".tracks-container").on('click', '.album-card', function(event) {
 		event.preventDefault();
 		/* Act on the event */
+
 		var id = $(this).attr('id').toString();
+		var data = $(this).attr('shown');
+		console.log(data);
+
 		var setlist_id = "<%= @setlist.id %>"
-		// $('#album-track-'+id).toggle('slow');
-		$.ajax({
-	    type: "GET",
-	    // url: "/setlists/<%= @setlist.id %>/tracks",
-	    url: "/showTracks",
-	    data: {
-    		track: {
-	    			album_id: id,
-	    			setlist_id: setlist_id
-	    		}
-	    	}
-	  	});
+		if($(this).data('tracks') === "true"){
+			
+			$('#album-track-'+id).toggle('slow');
+			console.log('true');
+
+		} else {
+			console.log("false");	
+			$.ajax({
+		    type: "GET",
+		    url: "/showTracks",
+		    data: {
+	    		track: {
+		    			album_id: id,
+		    			setlist_id: setlist_id
+		    		}
+		    	}
+		  	});
+
+		}
 	});
+
 	$(".album-tracks").on('click', '.track', function(event) {
 		event.preventDefault();
 		/* Act on the event */
@@ -90,7 +95,6 @@
 		$(this).toggle("fast");
 		$.ajax({
 	    type: "POST",
-	    // url: "/setlists/<%= @setlist.id %>/tracks",
 	    url: "/addTrack",
 	    data: {
     		track: {
@@ -106,22 +110,5 @@
 	    	}
 	  	});
 	});
-	// $('#setlist-save').click(function(event) {
-
-	// 	/* Act on the event */
-	// 	var id = "<%= current_user.id %>"
-	// 	$.ajax({
-	//     type: "POST",
-	//     url: "/setlists/<%= @setlist.id %>/tracks",
-	//     data: {
- //    		track: {
-	//     			tracks: JSON.stringify(tracks_hash)
-	//     		},
-	//     	user_id: id
-	//     	}
-	//   	});
-	// });
-
-
 </script>
 <% end %>

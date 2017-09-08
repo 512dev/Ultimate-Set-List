@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_setlist, only: [:index, :create, :destroy, :showTracks]
+  before_action :set_setlist, only: [:index, :create, :destroy]
   before_action :set_user, only: [:create]
   def index
     @tracks = @setlist.tracks
@@ -26,8 +26,9 @@ class TracksController < ApplicationController
   end
   def showTracks
     respond_to do |format|
-      album = RSpotify::Album.find(track_params[:album_id])
-      @album_tracks = album.tracks
+      @setlist = Setlist.find(track_params[:setlist_id])
+      @album = RSpotify::Album.find(track_params[:album_id])
+      @album_tracks = @album.tracks
       format.js
     end
 

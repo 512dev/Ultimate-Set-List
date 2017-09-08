@@ -1,0 +1,6 @@
+var id = "<%= j @album.id %>";
+// console.log(id);
+	
+$('#album-track-'+id).html("<%= j render 'tracks/album_tracks', locals: {album_tracks: @album_tracks} %>");
+$('#album-track-'+id).toggle('slow');
+$('#'+id).data('tracks', 'true');
